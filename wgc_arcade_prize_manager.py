@@ -18,15 +18,6 @@ prizes = [
 def display_prizes():
     """Display all the prizes."""
     print("\nPRIZES:")
-    # ljust() is used to left justify a string within a specified width
-    # example:
-    # fruit = "apple"
-    # x = fruit.ljust(10)
-    # print(x, "is my favorite fruit.")
-    #
-    # output:
-    # apple      is my favorite fruit.
-
     # Create table header with aligned colums using ljust()
     print(" | ".join(["Name".ljust(12), "Cost".ljust(6), "Stock"]))
     print("-" * 32)
@@ -36,8 +27,6 @@ def display_prizes():
         # Formats each row so each value lines up neatly
         row = [
             prize["Name"].ljust(12),
-            # Without str() the programme will fail
-            # Convert numvers to strings so ljust() can be used
             str(prize["Ticket Cost"]).ljust(6),
             str(prize["Current Stock"])
         ]
