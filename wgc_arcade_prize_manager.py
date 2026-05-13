@@ -7,11 +7,11 @@
 print("\n--- WGC Arcade Prize Manager ---")
 # List of all prizes
 prizes = [
-    {"Name": "Teddy Bear", "Ticket Cost": 160, "Current Stock": 40},
-    {"Name": "Fidget Toy", "Ticket Cost": 40, "Current Stock": 50},
-    {"Name": "Bouncy Ball", "Ticket Cost": 5, "Current Stock": 100},
-    {"Name": "Chocolate", "Ticket Cost": 45, "Current Stock": 75},
-    {"Name": "Keychain", "Ticket Cost": 20, "Current Stock": 60},
+    {"name": "Teddy Bear", "ticket_cost": 160, "current_stock": 40},
+    {"name": "Fidget Toy", "ticket_cost": 40, "current_stock": 50},
+    {"name": "Bouncy Ball", "ticket_cost": 5, "current_stock": 100},
+    {"name": "Chocolate", "ticket_cost": 45, "current_stock": 75},
+    {"name": "Keychain", "ticket_cost": 20, "current_stock": 60},
 ]
 
 
@@ -30,9 +30,9 @@ def display_prizes():
 
         # Formats each row so each value lines up neatly
         row = [
-            prize["Name"].ljust(12),
-            str(prize["Ticket Cost"]).ljust(6),
-            str(prize["Current Stock"])
+            prize["name"].ljust(12),
+            str(prize["ticket_cost"]).ljust(6),
+            str(prize["current_stock"])
         ]
 
         # Print the formatted row with "|" separating each column
