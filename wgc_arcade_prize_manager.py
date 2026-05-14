@@ -1,42 +1,54 @@
 # WGC Arcade Prize Manager
-# Phase 1/3
+# Phase 2/3
 # Christina C
 
 """WGC Arcade Prize Manager."""
 
 print("\n--- WGC Arcade Prize Manager ---")
+
+# Starting ticket balance
+ticket_balance = 200
+
 # List of all prizes
 prizes = [
-    {"name": "Teddy Bear", "ticket_cost": 160, "current_stock": 40},
-    {"name": "Fidget Toy", "ticket_cost": 40, "current_stock": 50},
-    {"name": "Bouncy Ball", "ticket_cost": 5, "current_stock": 100},
-    {"name": "Chocolate", "ticket_cost": 45, "current_stock": 75},
-    {"name": "Keychain", "ticket_cost": 20, "current_stock": 60},
+    {"Name": "Teddy Bear", "Ticket Cost": 160, "Current Stock": 40},
+    {"Name": "Fidget Toy", "Ticket Cost": 40, "Current Stock": 50},
+    {"Name": "Bouncy Ball", "Ticket Cost": 5, "Current Stock": 100},
+    {"Name": "Chocolate", "Ticket Cost": 45, "Current Stock": 75},
+    {"Name": "Keychain", "Ticket Cost": 20, "Current Stock": 60},
 ]
 
 
 def display_prizes():
     """Display all the prizes."""
     print("\nPRIZES:")
-
-    # Create table header with aligned columns using ljust()
+    # Create table header with aligned colums using ljust()
     print(" | ".join(["Name".ljust(12), "Cost".ljust(6), "Stock"]))
-
-    # Prints a divider line under the headings
     print("-" * 32)
 
     # Loops through each prize in the list
     for prize in prizes:
-
         # Formats each row so each value lines up neatly
         row = [
-            prize["name"].ljust(12),
-            str(prize["ticket_cost"]).ljust(6),
-            str(prize["current_stock"])
+            prize["Name"].ljust(12),
+            str(prize["Ticket Cost"]).ljust(6),
+            str(prize["Current Stock"])
         ]
-
-        # Print the formatted row with "|" separating each column
         print(" | ".join(row))
+
+
+def add_tickets(balance):
+    """Add tickets to player's balance."""
+    tickets = int(input("How many tickets would you like to add?: "))
+
+    # Add chosen amount of tickets to balance
+    balance += tickets
+
+    print(f"{tickets} tickets added.")
+    print(f"The New balance: {balance}")
+
+    # Calls
+    return balance
 
 
 def menu():
@@ -44,26 +56,27 @@ def menu():
     # while True loop will run forever if condition is always true
     # Infinite loop keeps menu running until user chooses to exit
     while True:
-
-        # Display menu options
         print("\n1. Prizes")
-        print("2. Exit")
+        print("2. Display Balance")
+        print("3. Add Tickets")
+        print("4. Redeem Prize")
+        print("5. Exit")
 
         # Get user choice
-        choice = input("Pick 1 or 2: ")
+        choice = input("Pick from 1-5: ")
 
         # Displays prize list if user selects 1
         if choice == "1":
             display_prizes()
 
         # Stop/exits the loop of the program if user selects 2
-        elif choice == "2":
-            print("Goodbye")
-            break
+        # elif choice == "2":
+            # print("Goodbye")
+            # break
 
-        # Runs and handles invalid input
-        else:
-            print("This is an invalid choice. Please pick either 1 or 2")
+        # Handles invalid input
+        # else:
+            # print("This is an invalid choice. Please pick either 1 or 2")
 
 
 # Start of the program
