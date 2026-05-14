@@ -51,11 +51,16 @@ def add_tickets(balance):
     return balance
 
 
+def redeem_prize(balance):
+    """Redeem prizes by subtracting the amount from users balance"""
+
+
 def menu():
     """Display menu screen."""
     # while True loop will run forever if condition is always true
     # Infinite loop keeps menu running until user chooses to exit
     while True:
+        # Choices
         print("\n1. Prizes")
         print("2. Display Balance")
         print("3. Add Tickets")
@@ -69,15 +74,23 @@ def menu():
         if choice == "1":
             display_prizes()
 
-        # Stop/exits the loop of the program if user selects 2
-        # elif choice == "2":
-            # print("Goodbye")
-            # break
+        elif choice == "2":
+            print(f"\nYour current ticket balance is: {ticket_balance}")
+
+        # elif choice == "3":
+
+        # elif choice == "4":
+
+        # Stop/exits the loop of the program if user picks 5
+        elif choice == "5":
+            print("Goodbye!")
+            break
 
         # Handles invalid input
-        # else:
-            # print("This is an invalid choice. Please pick either 1 or 2")
+        else:
+            print("This is an invalid choice. Please pick from 1-5")
 
 
 # Start of the program
-menu()
+if __name__ == "__main__":
+    menu()
