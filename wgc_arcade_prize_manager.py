@@ -47,16 +47,51 @@ def add_tickets(balance):
     print(f"{tickets} tickets added.")
     print(f"The New balance: {balance}")
 
-    # Calls
+    # Call the function
     return balance
 
 
 def redeem_prize(balance):
     """Redeem prizes by subtracting the amount from users balance"""
 
+    prize_name = input("Please enter prize name: ")
+
+    for prize in prizes:
+
+        # Finds the prize
+        if prize["Name"] == prize_name:
+
+            # Check stock
+            if prize["Current Stock"] <= 0:
+                print("sorry, the prize you have asked for is out of stock")
+                return balance
+
+            # Checks users balance
+            elif balance < prize["Ticket Cost"]:
+                print("You do not have enough tickets")
+                return balance
+
+            # Successful purchse of prize
+            else:
+                balance -= prize["Ticket Cost"]
+                prize["Current Stock"] -= 1
+
+                print(f"You have redeemed {prize['Name']}!")
+                print(f"Remaining balance: {balance}")
+
+                return balance
+
+    print("Prize not found")
+    return balance
+            
+    
+
 
 def menu():
     """Display menu screen."""
+
+    global ticket_balance # Allows the function to update the ticket balance variable outside the function
+    
     # while True loop will run forever if condition is always true
     # Infinite loop keeps menu running until user chooses to exit
     while True:
@@ -74,12 +109,17 @@ def menu():
         if choice == "1":
             display_prizes()
 
+        # Checks current balance
         elif choice == "2":
-            print(f"\nYour current ticket balance is: {ticket_balance}")
+            print(f"\nYour current balance is: {ticket_balance}")
 
-        # elif choice == "3":
+        # Add certain amount of tickets
+        elif choice == "3":
+            ticket_balance = add_tickets(ticket_balance)
 
-        # elif choice == "4":
+        # Redeem certain prize
+        elif choice == "4":
+            ticket_balance = redeem_prize(ticket_balance)
 
         # Stop/exits the loop of the program if user picks 5
         elif choice == "5":
