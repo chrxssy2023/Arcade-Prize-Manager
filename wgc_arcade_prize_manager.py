@@ -40,16 +40,28 @@ def display_prizes():
 def add_tickets(balance):
     """Add tickets to player's balance."""
     # Ask user how many tickets they want to add
-    tickets = int(input("How many tickets would you like to add?: "))
+    user_input = input("How many tickets would you like to add?: ")
 
-    # Add entered amount of tickets to balance
-    balance += tickets
+    try:
+        tickets = int(user_input)
 
-    print(f"{tickets} tickets added.")
-    print(f"The New balance: {balance}")
+        # Checks for positive number
+        if tickets <= 0:
+            print("Please enter a number greater than 0!")
+            return balance
 
-    # Return updated balance to menu
-    return balance
+        # Add entered amount of tickets to balance
+        balance += tickets
+
+        print(f"{tickets} tickets added.")
+        print(f"The New balance: {balance}")
+
+        # Return updated balance to menu
+        return balance
+
+    except ValueError:
+        print("That is not a number, please try again")
+        return balance
 
 
 def redeem_prize(balance):
