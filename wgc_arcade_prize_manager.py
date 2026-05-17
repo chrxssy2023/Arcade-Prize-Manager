@@ -39,59 +39,63 @@ def display_prizes():
 
 def add_tickets(balance):
     """Add tickets to player's balance."""
+    # Ask user how many tickets they want to add
     tickets = int(input("How many tickets would you like to add?: "))
 
-    # Add chosen amount of tickets to balance
+    # Add entered amount of tickets to balance
     balance += tickets
 
     print(f"{tickets} tickets added.")
     print(f"The New balance: {balance}")
 
-    # Call the function
+    # Return updated balance to menu
     return balance
 
 
 def redeem_prize(balance):
-    """Redeem prizes by subtracting the amount from users balance"""
-
+    """Redeem prizes by subtracting the amount from users balance."""
+    # Asks user which prize they want
     prize_name = input("Please enter prize name: ")
 
+    # Search through prize list
     for prize in prizes:
 
-        # Finds the prize
-        if prize["Name"] == prize_name:
+        # Finds the prize, .lower() makes input case insensitive
+        if prize["Name"].lower() == prize_name.lower():
 
-            # Check stock
+            # Check stock and prevents redeeming unavaliable prizes
             if prize["Current Stock"] <= 0:
                 print("sorry, the prize you have asked for is out of stock")
                 return balance
 
-            # Checks users balance
+            # Checks if user has enough tickets
             elif balance < prize["Ticket Cost"]:
                 print("You do not have enough tickets")
                 return balance
 
-            # Successful purchse of prize
             else:
+                # Remove ticket cost from balance
                 balance -= prize["Ticket Cost"]
+
+                # Reduce prize stock by 1 after redeeming the certain prize
                 prize["Current Stock"] -= 1
 
                 print(f"You have redeemed {prize['Name']}!")
                 print(f"Remaining balance: {balance}")
 
+                # Return updated balance
                 return balance
 
+    # This only runs if prize name does not exist
     print("Prize not found")
     return balance
-            
-    
 
 
 def menu():
     """Display menu screen."""
+    # Allows function to update ticket balance variable outside the function
+    global ticket_balance
 
-    global ticket_balance # Allows the function to update the ticket balance variable outside the function
-    
     # while True loop will run forever if condition is always true
     # Infinite loop keeps menu running until user chooses to exit
     while True:
