@@ -106,7 +106,7 @@ def redeem_prize(balance):
 def find_affordable_prizes(balance):
     """Find affordable prize(s) depending on how much user wants to spend."""
     while True:
-        user_input = input("How many tickets would you like to spend? ")
+        user_input = input("\nHow many tickets would you like to spend? ")
 
         try:
             amount = int(user_input)
@@ -118,6 +118,11 @@ def find_affordable_prizes(balance):
 
         except ValueError:
             print("Please enter a real whole number")
+
+    for prize in prizes:
+
+        if prize["ticket_cost"] <= amount and prize["current_stock"] > 0:
+            print(f"{prize['name']} - {prize['ticket_cost']} tickets")
 
 
 def menu():
