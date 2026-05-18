@@ -90,7 +90,7 @@ def redeem_prize(balance):
                 balance -= prize["ticket_cost"]
 
                 # Reduce prize stock by 1 after redeeming the certain prize
-                prize["Current Stock"] -= 1
+                prize["current_stock"] -= 1
 
                 print(f"You have redeemed {prize['name']}!")
                 print(f"Remaining balance: {balance}")
