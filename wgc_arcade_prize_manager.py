@@ -1,5 +1,5 @@
 # WGC Arcade Prize Manager
-# Phase 2/3
+# Phase 3/3
 # Christina C
 
 """WGC Arcade Prize Manager."""
@@ -22,7 +22,7 @@ prizes = [
 def display_prizes():
     """Display all the prizes."""
     print("\nPRIZES:")
-    # Create table header with aligned colums using ljust()
+    # Create table header with aligned columns using ljust()
     print(" | ".join(["Name".ljust(12), "Cost".ljust(6), "Stock"]))
     print("-" * 32)
 
@@ -103,6 +103,23 @@ def redeem_prize(balance):
     return balance
 
 
+def find_affordable_prizes(balance):
+    """Find affordable prize(s) depending on how much user wants to spend."""
+    while True:
+        user_input = input("How many tickets would you like to spend? ")
+
+        try:
+            amount = int(user_input)
+
+            if amount < 0:
+                print("Please enter a number bigger than 0")
+                continue
+            break
+
+        except ValueError:
+            print("Please enter a real whole number")
+
+
 def menu():
     """Display menu screen."""
     # Allows function to update ticket balance variable outside the function
@@ -115,11 +132,12 @@ def menu():
         print("\n1. Prizes")
         print("2. Display Balance")
         print("3. Add Tickets")
-        print("4. Redeem Prize")
-        print("5. Exit")
+        print("4. Prize affordability")
+        print("5. Redeem Prize")
+        print("6. Exit")
 
         # Get user choice
-        choice = input("Pick from 1-5: ")
+        choice = input("Pick from 1-6: ")
 
         # Displays prize list if user selects 1
         if choice == "1":
@@ -133,18 +151,22 @@ def menu():
         elif choice == "3":
             ticket_balance = add_tickets(ticket_balance)
 
-        # Redeem certain prize
+        # Checks users balance for what prize they can afford
         elif choice == "4":
+            find_affordable_prizes(ticket_balance)
+
+        # Redeem certain prize
+        elif choice == "5":
             ticket_balance = redeem_prize(ticket_balance)
 
-        # Stop/exits the loop of the program if user picks 5
-        elif choice == "5":
+        # Stop/exits the loop of the program if user picks 6
+        elif choice == "6":
             print("Goodbye!")
             break
 
         # Handles invalid input
         else:
-            print("This is an invalid choice. Please pick from 1-5")
+            print("This is an invalid choice. Please pick from 1-6")
 
 
 # Start of the program
